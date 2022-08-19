@@ -4,6 +4,7 @@ import heapq
 import nltk
 from langcodes import Language
 import eel
+From Tweet.py import Tweet 
 
 
 def summarise(stopwords, messages):
@@ -44,47 +45,15 @@ def summarise(stopwords, messages):
     return output
 
 
-class Tweet:
-    _message = ""
-    _lang = ""
-    _id = ""
-
-    def __init__(self):
-        pass
-
-    @property
-    def message(self):  # this is getter for module
-        return self._message
-
-    @message.setter
-    def message(self, m):
-        self._message = m
-
-    @property
-    def lang(self):
-        return self._lang
-
-    @lang.setter
-    def lang(self, m):
-        self._lang = m
-
-    @property
-    def id(self):
-        return self._id
-
-    @id.setter
-    def id(self, m):
-        self._id = m
-
 
 eel.init('web')
 
 
 @eel.expose
 def action():
-    bearer_token = 'AAAAAAAAAAAAAAAAAAAAAE0HPAEAAAAAGcE%2F9rY7gdUXrEMbALXVZwTbed0%3Dx2SI65Pc8u1HotVYITimMD7HLSytTCEZJfihKWYHXmWBxtazDv'
+    bearer_token = '<insert your bearer token here>'
     params = {"tweet.fields": "lang", "max_results": 100}
-    website = "https://twitter.com/UnionCoop"
+    website = "https://twitter.com/<Twitter-Account-Username"
     results = ""
     if website.count('/') == 3:
         urlCount = 0
@@ -95,7 +64,7 @@ def action():
                 username += i
         idurl = "https://api.twitter.com/2/users/by/username/" + username
         headers = {
-            'Authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAAE0HPAEAAAAAGcE%2F9rY7gdUXrEMbALXVZwTbed0%3Dx2SI65Pc8u1HotVYITimMD7HLSytTCEZJfihKWYHXmWBxtazDv', }
+            'Authorization': '<insert token for authorization here', }
         r = requests.get(idurl, headers=headers)
         idcount = 0
         id = ""
